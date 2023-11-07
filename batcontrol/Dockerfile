@@ -9,7 +9,7 @@ RUN apk add --no-cache \
             py3-yaml\
             py3-requests
 
-COPY ./batcontrol /batcontrol
+COPY ./src /batcontrol
 WORKDIR /batcontrol
 RUN ln -s /data/options.json /batcontrol/config/batcontrol_config.yaml
 
