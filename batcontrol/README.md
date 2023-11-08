@@ -4,6 +4,7 @@
 ## Preconditions:
 You have a PV Installation with a **Fronius inverter** and a battery (e.g. Symo Gen24)
 You have a **Tibber** contract with hourly electricity pricing
+(You can use this link to get 50€ Bonus if you want to start using Tibber https://invite.tibber.com/x8ci52nj. ) 
 
 ## Preparations:
 1. verify the credentials of your inverter for customer or technician user
