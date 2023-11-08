@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
-name: Muexxls Home assistant add-on repository
+name: Batcontrol add-on repository for home assistant
 url: 'https://https://github.com/muexxl/ha_addons'
-maintainer: Stephan Mükusch <stephan.muekusch@gmail.com>
+maintainer: Stephan Mükusch <muexxl@gmx.net>
