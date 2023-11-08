@@ -9,7 +9,7 @@ You have a **Tibber** contract with hourly electricity pricing
 ## Preparations:
 1. verify the credentials of your inverter for customer or technician user
 1. get your tibber API key from https://developer.tibber.com/
-1. edit the configuration according to your needs
+1. edit the configuration in home assistant according to your needs
 
 ## DISCLAIMER:
 Please note this software is provided without any liabilities. You are using this software at your own risk!
