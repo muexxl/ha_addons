@@ -2,8 +2,8 @@
 ### Save Electricity cost by re-charging your PV Battery when Electricity is cheap and there is not enough Solarpower available.
 
 ## Preconditions:
-You have a PV Installation with a Fronius inverter
-You have a Tibber contract with hourly electricity pricing
+You have a PV Installation with a **Fronius inverter** and a battery (e.g. Symo Gen24)
+You have a **Tibber** contract with hourly electricity pricing
 
 ## Preparations:
 1. verify the credentials of your inverter for customer or technician user
