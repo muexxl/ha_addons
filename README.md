@@ -5,7 +5,9 @@
 
 ## Add-ons
 
-This repository contains the following add-ons
+This repository contains only one add-on
+To use this addon you need a Fronius Inverter with a battery AND a dynamic priced electricity contract from Tibber
+(If you use this link, both of us get 50€ bonus https://invite.tibber.com/x8ci52nj. )
 
 ### [Batcontrol add-on](./batcontrol)
 
