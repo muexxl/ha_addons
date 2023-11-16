@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.1.2"
+version: "0.1.3"
 slug: "batcontrol"
 init: false
 arch:
@@ -23,7 +23,10 @@ options:
     password: YOUR-PASSWORD #
   utility:
     type: tibber
-    apikey: Zz-YOURAPIKEYYOURAPIKEYXXXXX
+    apikey: Zz-YOURAPIKEYYOURAPIKEYXXXXX # only required for tibber
+    vat: 0.20 # only required for awattar
+    fees: 0.015 # only required for awattar
+    markup: 0.03 # only required for awattar
   pvinstallations:
     - name: Haus #name
       lat: 48.4334480
@@ -47,8 +50,11 @@ schema:
     user: list(customer|technician) #customer or technician lowercase only!!
     password: password
   utility:
-    type: list(tibber)
-    apikey: password
+    type: list(tibber|awattar_at|awattar_de)
+    apikey: password? # only required for tibber
+    vat: float(0,10)? # only required for awattar
+    fees: float(0,10)? # only required for awattar
+    markup: float(0,10)? # only required for awattar
   pvinstallations:
     - name: str #name
       lat: float(,90)
