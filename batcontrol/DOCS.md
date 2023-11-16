@@ -30,9 +30,9 @@ This software helps you to get the additional energy at the cheapest price by co
 `vat`: 0.20 # only required for awattar, ignored for tibber  
 `fees`: 0.015 # only required for awattar, ignored for tibber  
 `markup`: 0.03 # only required for awattar, ignored for tibber  
-Tibber provides the personal prices directly via the API. So you need the apikey to identify YOUR home.  
-Awattar only provides the EPEX Spot prices. Following formula is used to calculate the price for awattar:  
-(Spotprice _ (1 + markup) + fees) _ (1 + VAT)
+Tibber provides the personal prices directly via the API. So you need the apikey to get the price for YOUR home.  
+Awattar only provides the EPEX Spot prices via the API. So the final price is calculated in the software using this formula:  
+(Spotprice x (1 + markup) + fees) x (1 + VAT)
 
 ### `pvinstallations`:
 
