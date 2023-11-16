@@ -1,4 +1,4 @@
-**Version 0.1.3** published on 8.11.2023
+**Version 0.1.3** published on 16.11.2023
 
 - added support for Awattar (DE+AT)
 - enhanced documentation
