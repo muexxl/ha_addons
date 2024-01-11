@@ -1,0 +1,52 @@
+---
+timezone: >
+  your time zone. not optional.
+loglevel: >
+  choose from: debug, info, warning, error
+max_logfile_size: 
+  Max size of the log file in kB. The home assistant logs are kept separate so this file can be kept as small as 10 kB. 
+battery_control:
+  min_price_difference: >
+    minimum price difference in Euro to justify charging your battery
+  always_allow_discharge_limit: >
+    0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
+  max_charging_from_grid_limit: >
+    0.00 to 1.00 charging from the grid is only allowed until this SOC limit
+inverter:
+  type: > 
+    currently only fronius_gen24 supported
+  address: >
+    the local IP of your inverter. needs to be reachable from the machine that runs batcontrol
+  user: >
+    customer or technician lowercase only!!
+  password: >
+    password for the UI of the inverter
+utility:
+  type: >
+    currently tibber and awattar are supported choose from: tibber, awattar_at, awattar_de
+  apikey: >
+    your personal apikey. only required for tibber
+  vat: >
+    VAT. as float value (e.g. 0.19 for 19% ) only required for awattar
+  fees: >
+    Grid fees as float value in EUR/kWh e.g. 0.087 for 8.7 c/kWh. only required for awattar
+  markup: >
+    Markup. as float value (e.g. 0.03 for 3% ) only required for awattar
+pvinstallations:
+  - name: >
+      Name of the installation. 
+    lat: >
+      Latitude as float. Positive Values for the northern hemisphere.
+    lon: >
+      Longitude as float. Positive Values for locations east of the zero meridian.
+    declination: >
+      inclination toward horizon 0..90 0=flat 90=vertical (e.g. wallmounted)
+    azimuth: >
+     -90:East, 0:South, 90:West -180..180
+    kWp: >
+      Power of the modules in kWp
+consumption_forecast:
+  annual_consumption: >
+    Your total consumption in kWh. The load profile will be scaled to meet the annual consumption.
+  load_profile: >
+    name of the load profile file within the config folder. The default profile is load_profile.csv .
