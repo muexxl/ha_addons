@@ -1,3 +1,8 @@
+**Version 0.1.5** published on 09.02.2024
+
+- introduced limit for log file
+- added hints in configuration via translations/en.yaml
+
 **Version 0.1.3** published on 16.11.2023
 
 - added support for Awattar (DE+AT)
