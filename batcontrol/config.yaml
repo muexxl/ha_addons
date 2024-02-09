@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.1.3"
+version: "0.1.5"
 slug: "batcontrol"
 init: false
 arch:
@@ -12,6 +12,7 @@ arch:
 options:
   timezone: Europe/Berlin #your time zone. not optional.
   loglevel: debug
+  max_logfile_size: 100 #kB
   battery_control:
     min_price_difference: 0.05 # minimum price difference in Euro to justify charging your battery
     always_allow_discharge_limit: 0.90 # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
@@ -40,6 +41,7 @@ options:
 schema:
   timezone: str #your time zone. not optional.
   loglevel: list(debug|info|warning|error)
+  max_logfile_size: int
   battery_control:
     min_price_difference: float(0,) # minimum price difference in Euro to justify charging your battery
     always_allow_discharge_limit: float(0,1) # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
