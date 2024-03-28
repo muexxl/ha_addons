@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
 name: Batcontrol add-on repository for home assistant
-url: 'https://https://github.com/muexxl/ha_addons'
+url: 'https://https://github.com/bggsolar/ha_addons'
 maintainer: Stephan Mükusch <muexxl@gmx.net>
