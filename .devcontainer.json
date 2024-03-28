@@ -6,10 +6,11 @@
   "runArgs": ["-e", "GIT_EDITOR=code --wait", "--privileged"],
   "remoteUser":"root",
   "containerEnv": {
-    "WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}"
+    "WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}",
+    "TZ": "Europe/Berlin"
   },
   "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode"],
-  "mounts": ["type=volume,target=/var/lib/docker"],
+  "mounts": ["type=volume,target=/var/lib/docker", "type=bind,readonly,source=/etc/localtime,target=/etc/localtime"],
   "settings": {
     "terminal.integrated.profiles.linux": {
       "zsh": {
