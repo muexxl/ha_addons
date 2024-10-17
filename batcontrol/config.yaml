@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.2.1"
+version: "0.2.2"
 slug: "batcontrol"
 init: false
 arch:
@@ -37,7 +37,7 @@ options:
       declination: 32 #inclination toward horizon 0..90 0=flat 90=vertical (e.g. wallmounted)
       azimuth: -90 # -90:East, 0:South, 90:West -180..180
       kWp: 15.695 # power in kWp
-      api: YOUR-API # forecastsolar-api
+      apikey: YOUR-API # forecastsolar-api
   consumption_forecast:
     annual_consumption: 4500 # total consumption in kWh p.a. the load profile
     load_profile: load_profile.csv #name of the load profile file within the config folder
@@ -69,7 +69,7 @@ schema:
       declination: float(0,90) #inclination toward horizon 0..90 0=flat 90=vertical (e.g. wallmounted)
       azimuth: float(,180) # -90:East, 0:South, 90:West -180..180
       kWp: float(0,) # power in kWp
-      api: str #forecastsolarapi
+      apikey: str? #forecastsolarapi
   consumption_forecast:
     annual_consumption: float(0,)? # total consumption in kWh p.a. the load profile
     load_profile: str #name of the load profile file within the config folder
