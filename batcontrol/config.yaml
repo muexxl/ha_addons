@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.1.5"
+version: "0.2.0"
 slug: "batcontrol"
 init: false
 arch:
@@ -22,8 +22,8 @@ options:
     address: 192.168.0.XX # the local IP of your inverter. needs to be reachable from the machine that runs batcontrol
     user: customer #customer or technician lowercase only!!
     password: YOUR-PASSWORD #
-    max_charge_rate: 5000 # Watt
-    max_grid_power: 25000 # Watt
+    max_pv_charge_rate : 3000 # Watt
+    max_grid_charge_rate: 5000 # Watt
   utility:
     type: tibber
     apikey: Zz-YOURAPIKEYYOURAPIKEYXXXXX # only required for tibber

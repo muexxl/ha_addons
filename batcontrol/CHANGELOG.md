@@ -1,3 +1,10 @@
+**Version 0.2.0** published on 17.10.2024
+- included MQTT capabilities (deactivated per default)
+- updated to batcontrol 0.2.0
+- new parameter :`max_pv_charge_rate`. Limits the rate at which your PV System charges your battery
+- renamed parameter `max_charge_rate` to `max grid charge rate`. Limits the maximum charging rate of your battery when charging from the grid. 
+- remove unused parameter `max_grid_power`
+
 **Version 0.1.5** published on 09.02.2024
 
 - introduced limit for log file

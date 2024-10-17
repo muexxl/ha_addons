@@ -22,6 +22,8 @@ This software helps you to get the additional energy at the cheapest price by co
 `address`: 192.168.0.XX # the local IP of your inverter. needs to be reachable from the machine that runs batcontrol  
 `user`: customer #customer or technician lowercase only!!  
 `password`: YOUR-PASSWORD # password for your inverter
+`max_pv_charge_rate`. Limits the rate at which your PV System charges your battery
+`max grid charge rate`. Limits the maximum charging rate of your battery when charging from the grid. 
 
 ### `utility`:
 
@@ -59,13 +61,13 @@ The addon gets three forecasts
 
 Based on the three forecasts AND the current state of charge (SOC) the software puts the inverter in one of the three modes:
 
-**MODE 0 - DISCHARGE ALLOWED. (DEFAULT)**
+**MODE 10 - DISCHARGE ALLOWED. (DEFAULT)**
 This is the normal mode of the battery if there is sufficient energy available or energy is currently expensive. If the battery is full the surplus will be feed-in. If there is not enough energy coming from your pv installatation to meet your demand energy from the battery will be used.
 
-**MODE 1 - AVOID DISCHARGE.**
+**MODE 0 - AVOID DISCHARGE.**
 If your consumption exceeds your current production energy from the grid will be used and the battery will not be discharged. This mode is used if prices are increasing in the future and the energy from the battery can be more efficiently used in the future
 
-**MODE 2 - CHARGE FROM GRID.**
+**MODE -1 - CHARGE FROM GRID.**
 The battery is charged from the grid at a certain charge rate. This mode calculates the estimated required energy for future high priced hours. The objective is to charge the battery enough so that you do not need to consume energy from the grid in hours with high prices.
 
 ## Fronius Inverter control
@@ -77,3 +79,5 @@ This procedure has several disatvantages:
 - usage of non documented APIs
 - a firmware update of the inverter might cause disruptions
 - unintended side effects (e.g. manual settings in the WebUI are overwritten to put the inverter in the defined Modes)
+
+Do not use this software if you do not want those side effects. 
