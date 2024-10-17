@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.2.2"
+version: "0.2.3"
 slug: "batcontrol"
 init: false
 arch:
@@ -54,8 +54,8 @@ schema:
     address: str # the local IP of your inverter. needs to be reachable from the machine that runs batcontrol
     user: list(customer|technician) #customer or technician lowercase only!!
     password: password
-    max_charge_rate: float(0,)? # Max Charging Ratio in Watt
-    max_grid_power: float(0,)? # Max Grid load Power in Watt 
+    max_pv_charge_rate: float(0,)? 
+    max_grid_charge_rate: float(0,)? 
   utility:
     type: list(tibber|awattar_at|awattar_de)
     apikey: password? # only required for tibber

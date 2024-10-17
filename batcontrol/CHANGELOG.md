@@ -1,4 +1,4 @@
-**Version 0.2.2** published on 17.10.2024
+**Version 0.2.3** published on 17.10.2024
 - added optional parameter `apikey` in pv installations. This parameter allows you to use your own API Key if you are a forecast solar customer
 - fixed bug if parameter api is missing
 
