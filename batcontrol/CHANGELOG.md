@@ -1,12 +1,19 @@
+**Version 0.2.5** published on 18.10.2024
+
+- fixed bug / Bad request to inverter when setting time of use
+- code refactoring: renamed fronius module to inverter
+
 **Version 0.2.3** published on 17.10.2024
+
 - added optional parameter `apikey` in pv installations. This parameter allows you to use your own API Key if you are a forecast solar customer
 - fixed bug if parameter api is missing
 
 **Version 0.2.0** published on 17.10.2024
+
 - included MQTT capabilities (deactivated per default)
 - updated to batcontrol 0.2.1
 - new parameter :`max_pv_charge_rate`. Limits the rate at which your PV System charges your battery
-- renamed parameter `max_charge_rate` to `max grid charge rate`. Limits the maximum charging rate of your battery when charging from the grid. 
+- renamed parameter `max_charge_rate` to `max grid charge rate`. Limits the maximum charging rate of your battery when charging from the grid.
 - remove unused parameter `max_grid_power`
 
 **Version 0.1.5** published on 09.02.2024
