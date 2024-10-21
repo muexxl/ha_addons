@@ -1,3 +1,8 @@
+**Version 0.2.7** published on 21.10.2024
+
+- fixed bug in force_charge() introduced with variable renaming in 0.2.0
+- fixed bug in Forecast SolarAPI when providing empty apikeys
+
 **Version 0.2.5** published on 18.10.2024
 
 - fixed bug / Bad request to inverter when setting time of use
