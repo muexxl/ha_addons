@@ -1,3 +1,8 @@
+**Version 0.2.8** published on 29.10.2024
+
+- fixed issue with timezones in docker #3 https://github.com/muexxl/batcontrol_addon/issues/3
+
+
 **Version 0.2.7** published on 21.10.2024
 
 - fixed bug in force_charge() introduced with variable renaming in 0.2.0
