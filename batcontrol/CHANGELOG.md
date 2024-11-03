@@ -1,3 +1,7 @@
+**Version 0.2.10** published on 29.10.2024
+
+- Roll Back to intermediate version 0.2.8+ of underlying source code due to https://github.com/muexxl/batcontrol/issues/32
+
 **Version 0.2.9** published on 29.10.2024
 
 - exclude energy that is reserved for backup power when calculating the avaiable energy
