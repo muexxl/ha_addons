@@ -1,3 +1,7 @@
+**Version 0.2.9** published on 29.10.2024
+
+- exclude energy that is reserved for backup power when calculating the avaiable energy
+
 **Version 0.2.8** published on 29.10.2024
 
 - fixed issue with timezones in docker #3 https://github.com/muexxl/batcontrol_addon/issues/3
