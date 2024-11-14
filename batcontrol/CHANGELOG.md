@@ -1,3 +1,9 @@
+**Version 0.2.11** published on 14.11.2024
+
+- Update to 0.2.11.
+- fix bugs
+- integrate PR
+
 **Version 0.2.10** published on 29.10.2024
 
 - Roll Back to intermediate version 0.2.8+ of underlying source code due to https://github.com/muexxl/batcontrol/issues/32
@@ -9,7 +15,6 @@
 **Version 0.2.8** published on 29.10.2024
 
 - fixed issue with timezones in docker #3 https://github.com/muexxl/batcontrol_addon/issues/3
-
 
 **Version 0.2.7** published on 21.10.2024
 

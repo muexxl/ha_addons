@@ -11,6 +11,6 @@ RUN apk add --no-cache \
 
 COPY ./src /batcontrol
 WORKDIR /batcontrol
-RUN ln -s /data/options.json /batcontrol/config/batcontrol_config.yaml
+RUN ln -sf /data/options.json /batcontrol/config/batcontrol_config.yaml
 
 CMD [ "./batcontrol.py" ]
