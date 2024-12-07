@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.2.11"
+version: "0.3.1"
 slug: "batcontrol"
 init: false
 arch:
@@ -9,6 +9,8 @@ arch:
   - armhf
   - armv7
   - i386
+map:
+  - ssl
 options:
   timezone: Europe/Berlin #your time zone. not optional.
   loglevel: debug
@@ -40,6 +42,19 @@ options:
   consumption_forecast:
     annual_consumption: 4500 # total consumption in kWh p.a. the load profile
     load_profile: load_profile.csv #name of the load profile file within the config folder
+  mqtt:
+    enabled: false
+    logger: false
+    broker: core-mosquitto
+    port: 1883
+    topic: house/batcontrol
+    username: user
+    password: password
+    tls: false
+    cafile: /etc/ssl/certs/ca-certificates.crt
+    certfile: /etc/ssl/certs/client.crt
+    keyfile: /etc/ssl/certs/client.key
+    tls_version: tlsv1.2
 schema:
   timezone: str #your time zone. not optional.
   loglevel: list(debug|info|warning|error)
@@ -72,3 +87,16 @@ schema:
   consumption_forecast:
     annual_consumption: float(0,)? # total consumption in kWh p.a. the load profile
     load_profile: str #name of the load profile file within the config folder
+  mqtt:
+    enabled: bool
+    logger: bool
+    broker: str
+    port: int
+    topic: str
+    username: str
+    password: password?
+    tls: bool
+    cafile: str?
+    certfile: str?
+    keyfile: str?
+    tls_version: list(tlsv1.2|tlsv1.3)?

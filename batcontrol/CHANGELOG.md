@@ -1,3 +1,10 @@
+**Version 0.3.1** published on 07.12.2024
+
+- Update to batcontrol 0.3.1
+- fix bugs
+- add MQTT options in configuration
+- advanced logging
+
 **Version 0.2.11** published on 14.11.2024
 
 - Update to 0.2.11.
