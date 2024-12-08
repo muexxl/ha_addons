@@ -1,3 +1,7 @@
+**Version 0.3.2** published on 08.12.2024
+
+- add evcc options in configuration
+
 **Version 0.3.1** published on 07.12.2024
 
 - Update to batcontrol 0.3.1
