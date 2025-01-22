@@ -1,3 +1,30 @@
+**Version 0.3.3** published on 22.01.2024
+
+implement version 0.3.3 of batcontrol.
+
+- EVCC : Enhance loadpoint configuration to support multiple topics by @MaStr in #80
+- MQTT & EVCC : Improve reconnect handling on broker restart by @MaStr in #82
+- Update to Documentation by @johannesghd in #86
+- Set Fronius Solar.API to active on initialisation by @johannesghd in #85
+- Set allow grid charging at the end of initialisation by @johannesghd in #83
+- Update README.MD by @johannesghd in #88
+- Feature: handle FC solar rate limit errors by @hashtagKnorke in #93
+- Major refactoring of modules by @MaStr in #71
+- Add MQTT Connection retry by @hashtagKnorke in #94
+- Refactor pylint workflow to analyze only changed Python files by @hashtagKnorke in #102
+- introduce proper OS-level timezone handling in Docker setup by @hashtagKnorke in #103
+- gracefully handle multiple changed files by @hashtagKnorke in #104
+- Add query parameter to allow modification of horizon used to forecast PV production in fcsolar.py by @johannesghd in #110
+- 113 invalid login 01.00.00 am after installing the latest ha version by @MaStr in #114
+
+special thanks goes to the contributers:
+@MaStr
+@hashtagKnorke
+@johannesghd
+
+corresponding issues can be found in the main github repo:
+https://github.com/muexxl/batcontrol
+
 **Version 0.3.2** published on 08.12.2024
 
 - add evcc options in configuration
