@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.3.3"
+version: "0.3.3rc3"
 slug: "batcontrol"
 init: false
 arch:
@@ -10,7 +10,11 @@ arch:
   - armv7
   - i386
 map:
-  - ssl
+  - type: ssl
+  - type: addon_config
+    read_only: false
+    path: /batcontrol/addon_config
+
 options:
   timezone: Europe/Berlin #your time zone. not optional.
   loglevel: debug

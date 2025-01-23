@@ -1,6 +1,14 @@
-**Version 0.3.3** published on 22.01.2024
+**Version 0.3.3** published on 23.01.2024
 
-implement version 0.3.3 of batcontrol.
+HA Addon specific changes:
+
+- move logfile to /data/batcontrol.log to make it persistant
+- added entryscript for container startup
+- mount persistant addon config folder in /app/addon_config
+- use load_profile.csv from addon config folder if file exists
+- use batcontrol_config.yaml from addon config folder if file exists instead of configuration provided via the addon configuration
+
+implement version 0.3.3 of batcontrol:
 
 - EVCC : Enhance loadpoint configuration to support multiple topics by @MaStr in #80
 - MQTT & EVCC : Improve reconnect handling on broker restart by @MaStr in #82
