@@ -4,6 +4,22 @@ In winter time there is usually not enough energy available from your residentia
 So you need to get additional energy from the grid.
 This software helps you to get the additional energy at the cheapest price by controlling your inverter in a smart way.
 
+## Customizing the load profile. 
+
+Step 1 
+download the default profile from https://raw.githubusercontent.com/muexxl/batcontrol/b08fa281efd63f5087d2da777e14f4403b5d3357/config/load_profile.csv
+
+Step 2
+edit the load profile according to your requirements. 
+
+Step 3
+place the edited load profile in your home assistant instance using below path. You can use the vscode plugin to do so. 
+/addon_configs/HEXCODE_batcontrol/load_profile.csv
+
+Step 4
+Restart the addon
+
+
 ## Configuration Parameters
 
 `timezone:` Europe/Berlin your time zone. not optional.  
