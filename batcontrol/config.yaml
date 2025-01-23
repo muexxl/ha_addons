@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.3.3rc5"
+version: "0.3.3rc9"
 slug: "batcontrol"
 init: false
 arch:
@@ -13,7 +13,7 @@ map:
   - type: ssl
   - type: addon_config
     read_only: false
-    path: /batcontrol/addon_config
+    path: /app/addon_config
 
 options:
   timezone: Europe/Berlin #your time zone. not optional.
