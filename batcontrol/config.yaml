@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.3.3rc3"
+version: "0.3.3rc5"
 slug: "batcontrol"
 init: false
 arch:
