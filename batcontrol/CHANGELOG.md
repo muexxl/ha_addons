@@ -1,6 +1,6 @@
 **Version 0.3.3** published on 23.01.2024
 
-HA Addon specific changes:
+HA Addon specific changes:  
 
 - move logfile to /data/batcontrol.log to make it persistant
 - added entryscript for container startup
