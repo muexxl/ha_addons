@@ -14,5 +14,5 @@ COPY ./src /app
 WORKDIR /app
 RUN ln -sf /data/options.json /app/config/batcontrol_config.yaml
 
-CMD [ "./run_infinite.sh" ]
-# CMD [ "./entrypoint_ha.sh" ]
+# CMD [ "./run_infinite.sh" ]
+CMD [ "./entrypoint_ha.sh" ]
