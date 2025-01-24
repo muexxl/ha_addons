@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.3.3"
+version: "0.3.3-hotfix1"
 slug: "batcontrol"
 init: false
 arch:
@@ -65,7 +65,8 @@ options:
     port: 1883
     status_topic: evcc/status
     # one loadpoints that should be monitored
-    loadpoint_topic: evcc/loadpoints/1/charging
+    loadpoint_topic:
+      - evcc/loadpoints/1/charging
     username: user
     password: password
     tls: false
@@ -124,7 +125,8 @@ schema:
     port: int
     status_topic: str
     # one loadpoints that should be monitored
-    loadpoint_topic: str
+    loadpoint_topic:
+      - str
     username: str?
     password: str?
     tls: bool
