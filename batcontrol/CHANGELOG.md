@@ -1,5 +1,7 @@
 **Version 0.3.3-hotfix1** published on 24.01.2024
 
+!!! WARNING !!!
+
 There has been a breaking change in the configuration file.
 YOU NEED TO UPDATE YOUR CONFIGURATION in the evcc section
 
