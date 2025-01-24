@@ -1,6 +1,21 @@
+**Version 0.3.3-hotfix1** published on 24.01.2024
+
+There has been a breaking change in the configuration file.
+YOU NEED TO UPDATE YOUR CONFIGURATION in the evcc section
+
+change below lines in the config to make it work again:
+
+loadpoint_topic: evcc/loadpoints/1/charging
+
+to
+
+loadpoint_topic:
+
+- evcc/loadpoints/1/charging
+
 **Version 0.3.3** published on 23.01.2024
 
-HA Addon specific changes:  
+HA Addon specific changes:
 
 - move logfile to /data/batcontrol.log to make it persistant
 - added entryscript for container startup
