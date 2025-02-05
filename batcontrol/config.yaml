@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.3.3-hotfix1"
+version: "0.3.3-1"
 slug: "batcontrol"
 init: false
 arch:
@@ -21,6 +21,9 @@ options:
   max_logfile_size: 100 #kB
   battery_control:
     min_price_difference: 0.05 # minimum price difference in Euro to justify charging your battery
+    min_price_difference_rel:
+      0.10 # Percentage (in decimal) of the current price to justify charging your battery
+      #    _rel helps to avoid charging at high prices with less efficiency
     always_allow_discharge_limit: 0.90 # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
     max_charging_from_grid_limit: 0.90 # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
   inverter:
@@ -59,6 +62,9 @@ options:
     certfile: /ssl/certs/client.crt
     keyfile: /ssl/certs/client.key
     tls_version: tlsv1.2
+    auto_discover_enable: true
+    auto_discover_topic: homeassistant
+
   evcc:
     enabled: false
     broker: core-mosquitto
@@ -80,6 +86,7 @@ schema:
   max_logfile_size: int
   battery_control:
     min_price_difference: float(0,) # minimum price difference in Euro to justify charging your battery
+    min_price_difference_rel: float(0,)?
     always_allow_discharge_limit: float(0,1) # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
     max_charging_from_grid_limit: float(0,1) # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
   inverter:
@@ -119,6 +126,9 @@ schema:
     certfile: str?
     keyfile: str?
     tls_version: list(tlsv1.2|tlsv1.3)?
+    auto_discover_enable: bool?
+    auto_discover_topic: str?
+
   evcc:
     enabled: bool
     broker: str
