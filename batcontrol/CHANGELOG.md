@@ -1,3 +1,14 @@
+# Version 0.4.1-0 published on 15.02.2024
+
+Support for Fronius firmware 1.35.XX
+
+Introduction of expert parameters for fine tuning the core batcontrol algorithm
+
+Further release notes can be found at
+https://github.com/muexxl/batcontrol/releases
+
+_Kudos for quick adoption to changed login behaviour of Fronius Inverters go to @MaStr_ 🎉
+
 # Version 0.3.3-1 published on 05.02.2024
 
 ### 🚀 MQTT Autodiscovery available!!
