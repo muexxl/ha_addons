@@ -1,7 +1,13 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.5.1"
+version: 0.5.1
 slug: "batcontrol"
+url: https://hub.docker.com/r/muexx/batcontrol
+startup: application
+boot: auto
+legacy: true
+stage: stable
+image: muexx/batcontrol
 init: false
 arch:
   - aarch64
@@ -13,7 +19,10 @@ map:
   - type: ssl
   - type: addon_config
     read_only: false
-    path: /app/addon_config
+    path: /app
+host_network: true
+environment:
+  TZ: ${timezone}
 
 options:
   timezone: Europe/Berlin #your time zone. not optional.
