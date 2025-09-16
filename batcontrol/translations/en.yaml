@@ -29,6 +29,9 @@ configuration:
   #   # vat: 0.20 # only required for awattar
   #   # fees: 0.015 # only required for awattar
   #   # markup: 0.03 # only required for awattar
+  solar_forecast_provider:
+    name: Solar forecast provider
+    description: Choose your solar forecast provider. Check https://github.com/muexxl/batcontrol/wiki/Solar-Forecast for details.
   pvinstallations:
     name: PV Installations
     description: A list of your PV installations. An installation is one area with aligned modules. Independent of the number of inverters or strings.
@@ -38,8 +41,3 @@ configuration:
   #   #   declination: 32 #inclination toward horizon 0..90 0=flat 90=vertical (e.g. wallmounted)
   #   #   azimuth: -90 # -90:East, 0:South, 90:West -180..180
   #   #   kWp: 15.695 # power in kWp
-  consumption_forecast:
-    name: Consumption forecast
-    description: Settings related to forecasting your consumption. "annual_consumption" is the total consumption in kwH. "load_profile" is the filename of the provided load profile.
-  #   # annual_consumption: 4500 # total consumption in kWh p.a. the load profile
-  #   # load_profile: load_profile.csv #name of the load profile file within the config folder

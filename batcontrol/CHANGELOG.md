@@ -1,3 +1,28 @@
+# 🚀 Version 0.5.2 — published on 17.09.2025
+
+### ✨ What’s New
+
+- ✅ Support for **Fronius firmware 1.38.XX** (🔑 updated login routine)
+- 📖 **Documentation refreshed** with more details and clarity
+- 🔧 New configuration parameter: `solar_forecast_provider` — choose between different providers for your solar production forecast
+
+---
+
+### 📌 Full Release Notes
+
+👉 [GitHub Release v0.5.2](https://github.com/muexxl/batcontrol/releases/tag/0.5.2)
+
+### 📚 Wiki
+
+👉 [Project Wiki](https://github.com/muexxl/batcontrol/wiki)
+
+---
+
+### 🙌 Kudos
+
+Special thanks for contributions & support in this release to:
+💡 @MaStr & ⚡ @Julfried
+
 # Version 0.5.1 published on 22.05.2025
 
 Support for Fronius firmware 1.36.XX

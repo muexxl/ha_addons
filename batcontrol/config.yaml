@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.5.1"
+version: "0.5.2"
 slug: "batcontrol"
 init: false
 arch:
@@ -46,6 +46,7 @@ options:
     vat: 0.20 # only required for awattar
     fees: 0.015 # only required for awattar
     markup: 0.03 # only required for awattar
+  solar_forecast_provider: fcsolarapi
   pvinstallations:
     - name: Haus #name
       lat: 48.4334480
@@ -116,6 +117,7 @@ schema:
     vat: float(0,10)? # only required for awattar
     fees: float(0,10)? # only required for awattar
     markup: float(0,10)? # only required for awattar
+  solar_forecast_provider: list(fcsolarapi|solarprognose)?
   pvinstallations:
     - name: str #name
       lat: float(,90)
@@ -124,6 +126,9 @@ schema:
       azimuth: float(,180) # -90:East, 0:South, 90:West -180..180
       kWp: float(0,) # power in kWp
       apikey: str? #forecastsolarapi
+      algorithm: str? #solarprognose
+      item: str? #solarprognose
+      token: str? #solarprognose
   consumption_forecast:
     annual_consumption: float(0,)? # total consumption in kWh p.a. the load profile
     load_profile: str #name of the load profile file within the config folder
