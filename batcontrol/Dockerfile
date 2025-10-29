@@ -1,28 +1,24 @@
 ARG BUILD_FROM
+# Refers to the config.yaml
+ARG BUILD_VERSION
 FROM $BUILD_FROM AS builder
-# Copy only whats needed for dependencies first
-COPY ./src/pyproject.toml ./src/LICENSE ./src/README.MD ./
 
-# Copy data for add-on
+# Install build dependencies
 RUN apk add --no-cache \
             python3 \
             py3-pip \
-            py3-setuptools
+            py3-setuptools \
+            git
 
+# Clone the repository at the specified version
+RUN git clone --depth 1 --branch ${BUILD_VERSION} https://github.com/muexxl/batcontrol.git /batcontrol
 
+# Set working directory to the cloned repository
+WORKDIR /batcontrol
 
-# RUN pip install --no-cache-dir setuptools>=66.0
-
-
-# Copy the rest of the source files
-COPY ./src/src ./src
-
-
-# Build a wheel from the public Git repo
+# Build a wheel from the cloned repository
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir=/wheels .
 
-
-# Install build dependencies
 
 # Stage 2: Build the final image
 FROM $BUILD_FROM
@@ -30,15 +26,20 @@ FROM $BUILD_FROM
 # Copy the built wheel from the builder stage and install it
 COPY --from=builder /wheels /wheels
 
+# Install runtime dependencies
 RUN apk add --no-cache \
             python3 \
             py3-pip \
-            py3-setuptools
+            py3-setuptools \
+            git
+
+# Copy the cloned repository from builder stage for config files
+COPY --from=builder /batcontrol /batcontrol_source
+
 RUN pip install --no-cache-dir --break-system-packages --extra-index-url https://piwheels.org/simple --prefer-binary /wheels/*.whl
-# RUN rm -rf /wheels
 
 
-ENV BATCONTROL_VERSION=${VERSION}
+ENV BATCONTROL_VERSION=${BUILD_VERSION}
 ENV BATCONTROL_GIT_SHA=${GIT_SHA}
 # Set default timezone to UTC, override with -e TZ=Europe/Berlin or similar
 # when starting the container
@@ -50,12 +51,12 @@ RUN mkdir -p /app /app/logs /app/config
 WORKDIR /app
 
 # The load profiles to all locations where it is needed
-COPY src/config/load_profile_default.csv ./config/load_profile.csv
-COPY src/config/load_profile_default.csv ./default_load_profile.csv
+COPY --from=builder /batcontrol_source/config/load_profile_default.csv ./config/load_profile.csv
+COPY --from=builder /batcontrol_source/config/load_profile_default.csv ./default_load_profile.csv
 
 # Copy all the other necessary runtime files
-COPY LICENSE src/entrypoint_ha.sh ./
-COPY src/config ./config_template
+COPY LICENSE /batcontrol_source/entrypoint_ha.sh ./
+COPY --from=builder /batcontrol_source/config ./config_template
 
 # Set the scripts as executable
 RUN chmod +x entrypoint_ha.sh
