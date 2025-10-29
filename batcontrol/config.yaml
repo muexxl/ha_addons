@@ -1,6 +1,6 @@
 name: "Batcontrol"
 description: "Controls the charging of the battery"
-version: "0.5.2"
+version: "0.5.3"
 slug: "batcontrol"
 init: false
 arch:
@@ -18,6 +18,7 @@ map:
 options:
   timezone: Europe/Berlin #your time zone. not optional.
   loglevel: debug
+  log_everything: false # if false debug messages from fronius.auth and urllib3.connectionpool will be suppressed
   max_logfile_size: 100 #kB
   battery_control:
     min_price_difference: 0.05 # minimum price difference in Euro to justify charging your battery
@@ -25,7 +26,8 @@ options:
       0.10 # Percentage (in decimal) of the current price to justify charging your battery
       #    _rel helps to avoid charging at high prices with less efficiency
     always_allow_discharge_limit: 0.90 # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
-    max_charging_from_grid_limit: 0.90 # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
+    max_charging_from_grid_limit: 0.89 # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
+    min_recharge_amount: 100 # in Wh, start & minimum amount of energy to recharge the battery
   battery_control_expert:
     charge_rate_multiplier: 1.1 # Increase (>1) calculated charge rate to compensate charge inefficencies.
     soften_price_difference_on_charging:
@@ -38,11 +40,12 @@ options:
     address: 192.168.0.XX # the local IP of your inverter. needs to be reachable from the machine that runs batcontrol
     user: customer #customer or technician lowercase only!!
     password: YOUR-PASSWORD #
-    max_pv_charge_rate: 3000 # Watt
+    max_pv_charge_rate: 0 # Watt, This allows to limit the PV to Battery charge rate. Set to 0 for unlimited charging.
     max_grid_charge_rate: 5000 # Watt
   utility:
     type: tibber
     apikey: Zz-YOURAPIKEYYOURAPIKEYXXXXX # only required for tibber
+    url: http://evcc.local:7070/api/tariff/grid # only required for evcc
     vat: 0.20 # only required for awattar
     fees: 0.015 # only required for awattar
     markup: 0.03 # only required for awattar
@@ -54,6 +57,7 @@ options:
       declination: 32 #inclination toward horizon 0..90 0=flat 90=vertical (e.g. wallmounted)
       azimuth: -90 # -90:East, 0:South, 90:West -180..180
       kWp: 15.695 # power in kWp
+      url: http://evcc.local:7070/api/tariff/solar # only required for evcc-solar
   consumption_forecast:
     annual_consumption: 4500 # total consumption in kWh p.a. the load profile
     load_profile: load_profile.csv #name of the load profile file within the config folder
@@ -65,6 +69,8 @@ options:
     topic: house/batcontrol
     username: user
     password: password
+    retry_attempts: 5 # optional, default: 5
+    retry_delay: 10 # seconds, optional, default: 10
     tls: false
     cafile: /ssl/certs/ca-certificates.crt
     certfile: /ssl/certs/client.crt
@@ -81,6 +87,8 @@ options:
     # one loadpoints that should be monitored
     loadpoint_topic:
       - evcc/loadpoints/1/charging
+    block_battery_while_charging: true # if true, battery discharge is blocked while EV is charging
+    battery_halt_topic: evcc/site/bufferSoc # optional, for dynamic discharge limit control
     username: user
     password: password
     tls: false
@@ -91,12 +99,14 @@ options:
 schema:
   timezone: str #your time zone. not optional.
   loglevel: list(debug|info|warning|error)
+  log_everything: bool
   max_logfile_size: int
   battery_control:
     min_price_difference: float(0,) # minimum price difference in Euro to justify charging your battery
     min_price_difference_rel: float(0,)?
     always_allow_discharge_limit: float(0,1) # 0.00 to 1.00 above this SOC limit using energy from the battery is always allowed
     max_charging_from_grid_limit: float(0,1) # 0.00 to 1.00 charging from the grid is only allowed until this SOC limit
+    min_recharge_amount: int(0,)? # in Wh, start & minimum amount of energy to recharge the battery
   battery_control_expert:
     charge_rate_multiplier: float(0,) # Increase (>1) calculated charge rate to compensate charge inefficencies.
     soften_price_difference_on_charging:
@@ -105,30 +115,39 @@ schema:
     soften_price_difference_on_charging_factor: int
     round_price_digits: int # round price to n digits after the comma
   inverter:
-    type: list(fronius_gen24) #currently only fronius_gen24 supported
-    address: str # the local IP of your inverter. needs to be reachable from the machine that runs batcontrol
-    user: list(customer|technician) #customer or technician lowercase only!!
-    password: password
-    max_pv_charge_rate: float(0,)?
-    max_grid_charge_rate: float(0,)?
+    # with 0.5.4 type: list(fronius_gen24|mqtt|dummy)
+    type: list(fronius_gen24|dummy)
+    address: str? # the local IP of your inverter. Required for fronius_gen24
+    user: list(customer|technician)? # Required for fronius_gen24
+    password: password?
+    # 0.5.4 capacity: int(0,)? # Battery capacity in Wh, required for mqtt
+    # 0.5.4 min_soc: int(0,100)? # Minimum SoC %, optional for mqtt (default: 5)
+    # 0.5.4 max_soc: int(0,100)? # Maximum SoC %, optional for mqtt (default: 100)
+    # 0.5.4 cache_ttl: int(0,)? # Cache TTL for SOC values in seconds, optional for mqtt (default: 120)
+    # 0.5.4 base_topic: str? # MQTT base topic, optional for mqtt (default: 'default')
+    max_pv_charge_rate: float(0,)?  # Watt, This allows to limit the PV to Battery charge rate. Set to 0 for unlimited charging.
+    max_grid_charge_rate: float(0,)? # Watt, required for all inverter types
   utility:
-    type: list(tibber|awattar_at|awattar_de)
+    type: list(tibber|awattar_at|awattar_de|evcc)
     apikey: password? # only required for tibber
+    url: str? # only required for evcc
     vat: float(0,10)? # only required for awattar
     fees: float(0,10)? # only required for awattar
     markup: float(0,10)? # only required for awattar
-  solar_forecast_provider: list(fcsolarapi|solarprognose)?
+  solar_forecast_provider: list(fcsolarapi|solarprognose|evcc-solar)?
   pvinstallations:
     - name: str #name
-      lat: float(,90)
-      lon: float(,90)
-      declination: float(0,90) #inclination toward horizon 0..90 0=flat 90=vertical (e.g. wallmounted)
-      azimuth: float(,180) # -90:East, 0:South, 90:West -180..180
-      kWp: float(0,) # power in kWp
+      lat: float(,90)?
+      lon: float(,90)?
+      declination: float(0,90)? #inclination toward horizon 0..90 0=flat 90=vertical (e.g. wallmounted)
+      azimuth: float(,180)? # -90:East, 0:South, 90:West -180..180
+      kWp: float(0,)? # power in kWp
+      url: str? # only required for evcc-solar
       apikey: str? #forecastsolarapi
       algorithm: str? #solarprognose
       item: str? #solarprognose
       token: str? #solarprognose
+      horizon: str? #forecastsolarapi horizon modifier
   consumption_forecast:
     annual_consumption: float(0,)? # total consumption in kWh p.a. the load profile
     load_profile: str #name of the load profile file within the config folder
@@ -140,6 +159,8 @@ schema:
     topic: str
     username: str?
     password: password?
+    retry_attempts: int?
+    retry_delay: int?
     tls: bool
     cafile: str?
     certfile: str?
@@ -156,6 +177,8 @@ schema:
     # one loadpoints that should be monitored
     loadpoint_topic:
       - str
+    block_battery_while_charging: bool?
+    battery_halt_topic: str?
     username: str?
     password: str?
     tls: bool

@@ -1,3 +1,22 @@
+# 🚀 Version 0.5.3 — published on 17.10.2025
+
+### What's New
+
+- This release calculates hourly values based on 15-minute interval provided by different providers. (evcc).
+- Tibber is switched to hourly by API request.
+- Evcc solar forecast provider
+- feat: add minimum recharge amount and related logic for charging from grid
+
+---
+
+### 📌 Full Release Notes
+
+👉 [GitHub Release v0.5.3](https://github.com/muexxl/batcontrol/releases/tag/0.5.3)
+
+### 📚 Wiki
+
+👉 [Project Wiki](https://github.com/muexxl/batcontrol/wiki)
+
 # 🚀 Version 0.5.2 — published on 17.09.2025
 
 ### ✨ What’s New
