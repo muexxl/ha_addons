@@ -1,3 +1,15 @@
+# 🚀 Version 0.5.3 — published on 02.11.2025
+
+Simple pass through of 0.5.3 of the main branch
+https://github.com/muexxl/batcontrol/releases/tag/0.5.3
+
+additional option for solar forecast providers available in home assistant: evcc-solar
+
+### 🙌 Kudos
+
+Special thanks for contributions & support in this release to:
+💡 @MaStr
+
 # 🚀 Version 0.5.2 — published on 17.09.2025
 
 ### ✨ What’s New
